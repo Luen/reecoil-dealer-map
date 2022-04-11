@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  	<script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"></script>
+    <script>
+$(document).ready(function() {
+    (async () => {
+      var wsurl = "https://wanderstories.space",
+        wsmapurl = "https://maps.wanderstories.space";
+      parameters = parameters || {}; // if object not set, create it.
+      const urlParams = new URLSearchParams(window.location.search);
+      const id = urlParams.get('id');
+      var divid = parameters.divid || 'mapdiv';
+      if (!document.getElementById(divid) && $("iframe[src*='umap']").length) {
+        $("iframe[src*='umap']").attr('id', divid);
+      }
+      var mapid = parameters.mapid || null;
+      if (!mapid && document.getElementById(divid).src) {
+        var mapid = document.getElementById(divid).src.match(/[0-9]+/)[0];
+      }
+
+      let lat = parameters.coordinates ? parameters.coordinates[0] : "-19.22517";
+      let lon = parameters.coordinates ? parameters.coordinates[1] : "146.70953";
+
+fetch('https://native-land.ca/wp-json/nativeland/v1/api/index.php?maps=languages&position='+lat+','+lng)
+  .then(response => response.json())
+  .then(data => console.log(data));
+
+})
+})
+</script>
+
+    <div id='map'></div>
+    <script>makeMap({divid:'map',height:"100%",baseLayers:['all']<?php echo $mapid ?>});//,defaultLayer:'greyWS',mapDownloads:false</script>
+
+
+</body>
+
+</html>
