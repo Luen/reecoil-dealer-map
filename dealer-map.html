@@ -14,12 +14,18 @@ const map = new L.Map('map', {
 osm = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
 map.addLayer(osm)
 L.Marker.prototype.options.icon = L.icon({
-    iconUrl: "https://cdn.shopify.com/s/files/1/2195/6549/files/R-OnWhite_32x32.png"
+    iconUrl: "https://cdn.shopify.com/s/files/1/2195/6549/files/R-OnWhite_32x32.png",
+    iconAnchor: [16,16],
+    popupAnchor: [0,0],
+    tooltipAnchor: [0,0]
 });
 
 var runLayer = omnivore.kml('https://www.google.com/maps/d/kml?forcekml=1&mid=1qqSCEElgfeZj1nyi9WYDYwkYtMmpiMxC')
 .on('ready', function() {
   map.fitBounds(runLayer.getBounds());
+})
+.bindTooltip(function (layer) {
+  return layer.feature.properties.name
 })
 .bindPopup(function (layer) {
   var description = layer.feature.properties.description ? layer.feature.properties.description : ''
