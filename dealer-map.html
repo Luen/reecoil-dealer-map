@@ -9,7 +9,8 @@ const map = new L.Map('map', {
   center: new L.LatLng(10,20),
   zoom: 2,
   minZoom: 1,
-  zoomControl: false
+  zoomControl: false,
+  //attributionControl: false
 }),
 osm = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
 map.addLayer(osm)
@@ -28,10 +29,10 @@ var runLayer = omnivore.kml('https://www.google.com/maps/d/kml?forcekml=1&mid=1q
   return layer.feature.properties.name
 })
 .bindPopup(function (layer) {
-  var description = layer.feature.properties.description ? layer.feature.properties.description : ''
-  var url, link = ""
-  if (description) {
-    url = new URL(description);
+  var url = layer.feature.properties.url ? layer.feature.properties.url : ''
+  var link = ""
+  if (url) {
+    url = new URL(url);
     link = "<p><a href=\""+url+"\" target=\"_blank\">"+url.host+"</a></p>";
   }
   var address = layer.feature.properties.address ? layer.feature.properties.address : ''
@@ -846,7 +847,21 @@ var runLayer = omnivore.kml('https://www.google.com/maps/d/kml?forcekml=1&mid=1q
 <div class="content" style="text-align: left;"><a href="https://www.freetree.de/en/reecoil-motorsaegenstropp" target="_blank" rel="noopener noreferrer"><span style="color: #000000;">www.freetree.de</span></a></div>
 <div class="content" style="text-align: left;"><span style="color: #000000;"></span></div>
 <div class="content" style="text-align: left;">
+<br>
+<br>
 <meta charset="utf-8">
+<div class="content"><span></span></div>
+<div class="content" style="text-align: left;"><img src="https://cdn.shopify.com/s/files/1/2195/6549/files/arboristbutiken-logo_240x240.png?v=1654565318" alt="Arboristbutiken Sweden" style="float: right;" /></div>
+<div class="content" style="text-align: left;"></div>
+<div class="content" style="text-align: left;"><meta charset="utf-8" />
+<div class="content" style="text-align: left;"><meta charset="utf-8" />
+<div class="content" style="text-align: left;"><strong>Arboristbutiken</strong></div>
+<div class="content" style="text-align: left;"><span style="color: #000000;">Vendevägen 62, <br />182 66 Djursholm, <br /><strong>Sweden</strong></span></div>
+<div class="content" style="text-align: left;"><span style="color: #000000;">+49 9187 90733520</span></div>
+<div class="content" style="text-align: left;"><a href="https://www.arboristbutiken.se/" target="_blank" rel="noopener noreferrer">www.arboristbutiken.se</a></div>
+<div class="content" style="text-align: left;"><span style="color: #000000;"></span></div>
+<div class="content" style="text-align: left;"><span style="color: #000000;"></span></div>
+<br><br>
 <div class="content"><span></span></div>
 <div class="content">
 <meta charset="utf-8">
